@@ -18,12 +18,19 @@ router.post('/', auth, async (req, res) => {
 
 router.get('/before/:timestamp', auth, async (req, res) => {
 	try {
-		const posts = await Post.find({ createdAt: { $lt: req.params.timestamp } }).sort({ createdAt: -1 });
+		const { timestamp } = req.params;
+		const limit = 10;
+
+		const posts = await Post.find({ createdAt: { $lt: timestamp } })
+			.sort({ createdAt: -1 })
+			.limit(limit);
+
 		res.json(posts);
 	} catch (err) {
 		res.status(500).json({ message: err.message });
 	}
 });
+
 
 
 router.get('/', auth, async (req, res) => {

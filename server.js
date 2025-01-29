@@ -21,5 +21,5 @@ const forumRoutes = require('./routes/forum');
 app.use('/api/forum', forumRoutes);
 app.use('/api/auth', authRoutes);
 
-const PORT = process.env.PORT || 5060;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`));
